@@ -1,0 +1,17 @@
+[2025-04-20 18:48:55] Sucesso - area_repositorio.py - pegar_por_id: Área criada com sucesso - id: 6, nome: Fazenda Mogi, localização: Mogi das Cruzes - SP, hectares: 12.0
+[2025-04-20 19:33:01] Sucesso - area_repositorio - criar: Área criada com sucesso - id: 7, nome: Fazenda Nova Mogi, localização: Mogi das Cruzes - SP, hectares: 14.0
+[2025-04-20 19:33:51] Sucesso - area_repositorio - atualizar_por_id: Área atualizada com sucesso - id: 7, nome: Fazenda New Mogi, localização: Mogi das Cruzes - SP, hectares: 14.8
+[2025-04-20 19:34:02] Sucesso - area_repositorio - deletar_por_id: Área deletada com sucesso - id: 7
+[2025-04-20 19:34:11] Sucesso - area_repositorio - deletar_por_id: Área deletada com sucesso - id: 6
+[2025-04-20 19:34:43] Sucesso - cultura_repositorio - criar: Cultura criada com sucesso - id: [6], nome: Soja_2, consumo_hidrico_diario_l_m2: 5.4
+[2025-04-20 19:35:11] Sucesso - cultura_repositorio - atualizar_por_id: Cultura atualizada com sucesso - id: 6, nome: Soja_3, consumo_hidrico_diario_l_m2: 5.8
+[2025-04-20 19:35:19] Sucesso - cultura_repositorio - deletar_por_id: Cultura deletada com sucesso - id: 6
+[2025-04-20 19:36:43] Sucesso - plantio_repositorio - criar: Plantio criada com sucesso - id: [6], nome: Plantio Novo, observacao: Novo Plantio, area_id: 1, cultura_id: 1, data_plantio: 2025-04-20 00:00:00
+[2025-04-20 19:38:08] Sucesso - plantio_repositorio - atualizar_por_id: Plantio atualizada com sucesso - id: 6, nome: Novo Plantio 2, observacao: Novo 2, area_id: 2, cultura_id: 2, data_plantio: 2025-04-20 00:00:00
+[2025-04-20 19:38:27] Sucesso - plantio_repositorio - deletar_por_id: Plantio deletada com sucesso - id: 6
+[2025-04-20 19:41:19] Sucesso - irrigacao_repositorio - criar: Irrigacao criada com sucesso - id: [8], plantio_id: 1, data_irrigacao: 2025-04-20 00:00:00, volume_agua_l: 1500000.0
+[2025-04-20 19:42:26] Sucesso - irrigacao_repositorio - atualizar_por_id: Irrigacao atualizada com sucesso - id: 8, plantio_id: 1, data_irrigacao: 2025-04-20 00:00:00, volume_agua_l: 1480000.0
+[2025-04-20 19:42:41] Sucesso - irrigacao_repositorio - deletar_por_id: Irrigacao deletada com sucesso - id: 8
+[2025-04-20 19:43:20] Sucesso - feedback_repositorio - criar: Feedback criado com sucesso - id: [46], cultura_id: 1, message_feedback: Nova mensagem, tips: Nova Dica, percent: 10.0
+[2025-04-20 19:44:14] Sucesso - feedback_repositorio - atualizar_por_id: Feedback atualizado com sucesso - id: 46, cultura_id: 2, message_feedback: Nova 1, tips: Dica 1, percent: 12.0
+[2025-04-20 19:44:37] Sucesso - feedback_repositorio - deletar_por_id: Feedback deletado com sucesso - id: 46

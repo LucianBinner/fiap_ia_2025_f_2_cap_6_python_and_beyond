@@ -1,4 +1,5 @@
 from config.db.db_config import pegar_conexao
+from config.logs.log_config import registrar_log
 
 def pegar():
     try:
@@ -12,7 +13,9 @@ def pegar():
         feedbacks = cursor.fetchall()
         return feedbacks
     except Exception as e:
-        raise Exception("Erro ao buscar feedbacks: {str(e)}")
+        message_error = f"Erro ao buscar feedbacks: {str(e)}"
+        registrar_log("feedback_repositorio", "pegar", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -32,7 +35,9 @@ def pegar_por_id(id):
         feedback = cursor.fetchone()
         return feedback
     except Exception as e:
-        raise Exception(f"Erro ao buscar feedback por ID: {str(e)}")
+        message_error = f"Erro ao buscar feedback por ID: {str(e)}"
+        registrar_log("feedback_repositorio", "pegar_por_id", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -53,7 +58,9 @@ def pegar_por_cultura_id_e_percentual(cultura_id, percentual):
         feedback = cursor.fetchone()
         return feedback
     except Exception as e:
-        raise Exception(f"Erro ao buscar feedback por ID: {str(e)}")
+        message_error = f"Erro ao buscar feedback por cultura_id e percentual: {str(e)}"
+        registrar_log("feedback_repositorio", "pegar_por_cultura_id_e_percentual", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -70,9 +77,12 @@ def criar(cultura_id, message_feedback, tips, percent):
             [cultura_id, message_feedback, tips, percent, id_var]
         )
         conexao.commit()
+        registrar_log("feedback_repositorio", "criar", "Sucesso", f"Feedback criado com sucesso - id: {str(id_var.getvalue())}, cultura_id: {str(cultura_id)}, message_feedback: {str(message_feedback)}, tips: {str(tips)}, percent: {str(percent)}")
         return id_var.getvalue()[0]
     except Exception as e:
-        raise Exception(f"Erro ao criar feedback: {str(e)}")
+        message_error = f"Erro ao criar feedback: {str(e)}"
+        registrar_log("feedback_repositorio", "criar", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -88,9 +98,12 @@ def atualizar_por_id(id, cultura_id, message_feedback, tips, percent):
             [cultura_id, message_feedback, tips, percent, id]
         )
         conexao.commit()
+        registrar_log("feedback_repositorio", "atualizar_por_id", "Sucesso", f"Feedback atualizado com sucesso - id: {str(id)}, cultura_id: {str(cultura_id)}, message_feedback: {str(message_feedback)}, tips: {str(tips)}, percent: {str(percent)}")
         return cursor.rowcount > 0
     except Exception as e:
-        raise Exception(f"Erro ao atualizar feedback: {str(e)}")
+        message_error = f"Erro ao atualizar feedback: {str(e)}"
+        registrar_log("feedback_repositorio", "atualizar_por_id", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -103,9 +116,12 @@ def deletar_por_id(id):
         cursor = conexao.cursor()
         cursor.execute('DELETE FROM feedback WHERE id = :1', [id])
         conexao.commit()
+        registrar_log("feedback_repositorio", "deletar_por_id", "Sucesso", f"Feedback deletado com sucesso - id: {str(id)}")
         return cursor.rowcount > 0
     except Exception as e:
-        raise Exception(f"Erro ao deletar feedback: {str(e)}")
+        message_error = f"Erro ao deletar feedback: {str(e)}"
+        registrar_log("feedback_repositorio", "deletar_por_id", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()

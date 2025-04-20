@@ -1,4 +1,5 @@
 from config.db.db_config import pegar_conexao
+from config.logs.log_config import registrar_log
 
 def pegar():
     try:
@@ -8,7 +9,9 @@ def pegar():
         areas = cursor.fetchall()
         return areas
     except Exception as e:
-        raise Exception("Erro ao buscar áreas: {str(e)}")
+        message_error = f"Erro ao buscar áreas: {str(e)}"
+        registrar_log("area_repositorio", "pegar", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -23,7 +26,9 @@ def pegar_por_id(id):
         area = cursor.fetchone()
         return area
     except Exception as e:
-        raise Exception(f"Erro ao buscar área por ID: {str(e)}")
+        message_error = f"Erro ao buscar área por ID: {str(e)}"
+        registrar_log("area_repositorio", "pegar_por_id", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -40,9 +45,12 @@ def criar(nome, localizacao, hectar):
             [nome, localizacao, hectar, id_var]
         )
         conexao.commit()
+        registrar_log("area_repositorio", "criar", "Sucesso", f"Área criada com sucesso - id: {str(id_var.getvalue()[0])}, nome: {str(nome)}, localização: {str(localizacao)}, hectares: {str(hectar)}")
         return id_var.getvalue()[0]
     except Exception as e:
-        raise Exception(f"Erro ao criar área: {str(e)}")
+        message_error = f"Erro ao criar área: {str(e)}"
+        registrar_log("area_repositorio", "criar", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -58,9 +66,12 @@ def atualizar_por_id(id, nome, localizacao, hectar):
             [nome, localizacao, hectar, id]
         )
         conexao.commit()
+        registrar_log("area_repositorio", "atualizar_por_id", "Sucesso", f"Área atualizada com sucesso - id: {str(id)}, nome: {str(nome)}, localização: {str(localizacao)}, hectares: {str(hectar)}")
         return cursor.rowcount > 0
     except Exception as e:
-        raise Exception(f"Erro ao atualizar área: {str(e)}")
+        message_error = f"Erro ao atualizar área: {str(e)}"
+        registrar_log("area_repositorio", "atualizar_por_id", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -73,9 +84,12 @@ def deletar_por_id(id):
         cursor = conexao.cursor()
         cursor.execute('DELETE FROM area WHERE id = :1', [id])
         conexao.commit()
+        registrar_log("area_repositorio", "deletar_por_id", "Sucesso", f"Área deletada com sucesso - id: {str(id)}")
         return cursor.rowcount > 0
     except Exception as e:
-        raise Exception(f"Erro ao deletar área: {str(e)}")
+        message_error = f"Erro ao deletar área: {str(e)}"
+        registrar_log("area_repositorio", "deletar_por_id", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()

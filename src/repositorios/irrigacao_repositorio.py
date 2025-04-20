@@ -1,4 +1,5 @@
 from config.db.db_config import pegar_conexao
+from config.logs.log_config import registrar_log
 
 def pegar():
     try:
@@ -12,7 +13,9 @@ def pegar():
         irrigacoes = cursor.fetchall()
         return irrigacoes
     except Exception as e:
-        raise Exception("Erro ao buscar áreas: {str(e)}")
+        message_error = f"Erro ao buscar irrigacoes: {str(e)}"
+        registrar_log("irrigacao_repositorio", "pegar", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -49,7 +52,9 @@ def pegar_por_id(id):
         irrigacao = cursor.fetchone()
         return irrigacao
     except Exception as e:
-        raise Exception("Erro ao buscar área por ID: {str(e)}")
+        message_error = f"Erro ao buscar irrigacao por ID: {str(e)}"
+        registrar_log("irrigacao_repositorio", "pegar_por_id", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -67,9 +72,12 @@ def criar(plantio_id, data_irrigacao, volume_agua_l):
         )
         id = id_var.getvalue()
         conexao.commit()
+        registrar_log("irrigacao_repositorio", "criar", "Sucesso", f"Irrigacao criada com sucesso - id: {str(id)}, plantio_id: {str(plantio_id)}, data_irrigacao: {str(data_irrigacao)}, volume_agua_l: {str(volume_agua_l)}")
         return id
     except Exception as e:
-        raise Exception(f"Erro ao criar irrigação: {str(e)}")
+        message_error = f"Erro ao criar irrigacao: {str(e)}"
+        registrar_log("irrigacao_repositorio", "criar", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -85,9 +93,12 @@ def atualizar_por_id(id, plantio_id, data_irrigacao, volume_agua_l):
             [plantio_id, data_irrigacao, volume_agua_l, id]
         )
         conexao.commit()
+        registrar_log("irrigacao_repositorio", "atualizar_por_id", "Sucesso", f"Irrigacao atualizada com sucesso - id: {str(id)}, plantio_id: {str(plantio_id)}, data_irrigacao: {str(data_irrigacao)}, volume_agua_l: {str(volume_agua_l)}")
         return cursor.rowcount > 0
     except Exception as e:
-        raise Exception(f"Erro ao atualizar irrigação: {str(e)}")
+        message_error = f"Erro ao atualizar irrigacao: {str(e)}"
+        registrar_log("irrigacao_repositorio", "atualizar_por_id", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
@@ -100,9 +111,12 @@ def deletar_por_id(id):
         cursor = conexao.cursor()
         cursor.execute('DELETE FROM irrigacao WHERE id = :1', [id])
         conexao.commit()
+        registrar_log("irrigacao_repositorio", "deletar_por_id", "Sucesso", f"Irrigacao deletada com sucesso - id: {str(id)}")
         return cursor.rowcount > 0
     except Exception as e:
-        raise Exception(f"Erro ao deletar irrigação: {str(e)}")
+        message_error = f"Erro ao deletar irrigacao: {str(e)}"
+        registrar_log("irrigacao_repositorio", "deletar_por_id", "Erro", message_error)
+        raise Exception(message_error)
     finally:
         if 'cursor' in locals():
             cursor.close()
