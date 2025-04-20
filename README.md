@@ -10,7 +10,7 @@
 ### Instalação e Execução
 1. Clone o repositório
    ```
-   git clone URL_ADDRESS.com/yourusername/sistema-gestao-hidrica.git
+   git clone https://github.com/LucianBinner/fiap_ia_2025_f_2_cap_6_python_and_beyond.git
    ```
 2. Navegue até a pasta do raiz do projeto
 3. Execute o sistema através do comando:
