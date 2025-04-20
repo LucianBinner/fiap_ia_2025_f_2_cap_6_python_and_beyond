@@ -15,6 +15,7 @@ def exibir_menu():
     print('4. Irrigações')
     print('5. Feedbacks')
     print('6. Logs dos Sistema')
+    print('7. Sobre o Sistema')
     print('0. Sair')
     print('\nEscolha uma opção: ', end='')
 
@@ -37,6 +38,14 @@ def main():
                     menu_feedbacks()
                 case '6':
                     menu_logs()
+                case '7':
+                    os.system("cls")
+                    print('\n=== Sobre o Sistema ===')
+                    print('\nEste é um sistema de gestão hídrica desenvolvido para facilitar o controle e a monitorização das irrigações de culturas.')
+                    print('O sistema permite cadastrar áreas, culturas, plantios, irrigações e feedbacks.')
+                    print('O sistema foi desenvolvido com o intuito de ajudar os agricultores a controlarem suas irrigações e a melhorarem a qualidade da água.')
+                    print('O sistema tem com principal objetivo ajudar na economia hídrica, pois este é um dos grandes vilões no mercado agricultor, assim preserva-se o meio ambiente e ajuda o setor economicamente.')
+                    input("\nPressione ENTER")
                 case '0':
                     print('\nSaindo do sistema...')
                     break
