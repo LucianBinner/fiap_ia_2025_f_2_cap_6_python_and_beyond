@@ -2,9 +2,11 @@
 
 ## Como Executar o Sistema
 
-### Requisitos
-- Python 3.10 ou superior
+### Requisitos do Ambiente de Execução
+- Python - versão: 3.10 ou superior
 - Bibliotecas necessárias:
+  - oracledb - versão: 1.4.1
+  - pandas - versão: 2.1.1
   - os (biblioteca padrão)
 
 ### Instalação e Execução
