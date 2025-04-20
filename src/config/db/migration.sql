@@ -62,12 +62,12 @@ CREATE TABLE irrigacao (
     CONSTRAINT fk_plantio_id FOREIGN KEY (plantio_id) REFERENCES plantio(id) ON DELETE CASCADE
 );
 
-INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (1, DATE '2024-11-02', 1500.00);
-INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (1, DATE '2024-11-03', 1600.00);
-INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (2, DATE '2024-11-06', 1200.00);
-INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (3, DATE '2024-11-11', 1350.00);
-INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (4, DATE '2024-11-13', 1450.00);
-INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (5, DATE '2024-11-16', 1550.00);
+INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (1, DATE '2024-11-02', 1250000);
+INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (1, DATE '2024-11-03', 1500000);
+INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (2, DATE '2024-11-06', 509400);
+INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (3, DATE '2024-11-11', 533000);
+INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (4, DATE '2024-11-13', 1375000);
+INSERT INTO irrigacao (plantio_id, data_irrigacao, volume_agua_l) VALUES (5, DATE '2024-11-16', 1176000);
 
 CREATE TABLE feedback (
     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -78,37 +78,52 @@ CREATE TABLE feedback (
     CONSTRAINT fk_feedback_cultura_id FOREIGN KEY (cultura_id) REFERENCES cultura(id) ON DELETE CASCADE
 );
 
--- Cultura 1: Milho
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Irrigação adequada ao longo da semana.', 'Continue com o monitoramento diário do solo.', 94);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Volume de água abaixo do ideal.', 'Ajuste o sistema para manter 5.2 L/m²/dia.', 78);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Desperdício de água detectado em alguns dias.', 'Evite irrigação após chuvas.', 82);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Consumo hídrico estável e eficiente.', 'Parabéns pelo controle hídrico!', 96);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Início promissor, mas com variações.', 'Verifique os aspersores para distribuição uniforme.', 88);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Irrigação no ponto ideal.', 'Continue monitorando as condições do solo e clima.', 0.0);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Leve déficit hídrico (-4.5%).', 'Aumente um pouco o volume irrigado nos próximos dias.', -4.5);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Déficit moderado detectado (-9.3%).', 'Revise o cronograma de irrigação semanal.', -9.3);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Irrigação abaixo do necessário (-14.7%).', 'Aplique reforço imediato para evitar estresse hídrico.', -14.7);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Crítico: Irrigação muito baixa (-22.1%).', 'Risco à produção. Urgente rever manejo hídrico.', -22.1);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Leve excesso de irrigação (+3.8%).', 'Reduza discretamente o tempo de irrigação.', 3.8);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Excesso moderado detectado (+8.5%).', 'Ajuste o sistema de irrigação para evitar desperdício.', 8.5);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Volume irrigado acima do ideal (+13.4%).', 'Monitore a drenagem e a umidade do solo.', 13.4);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (1, 'Crítico: Excesso elevado de água (+19.9%).', 'Reduza imediatamente a frequência de irrigação.', 19.9);
 
--- Cultura 2: Soja
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Boa performance hídrica.', 'Mantenha os 4.8 L/m² por dia com pequenas variações.', 91);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Déficit hídrico registrado na segunda semana.', 'Revise a frequência de irrigação.', 76);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Uso eficiente dos recursos hídricos.', 'Continue o acompanhamento com sensores de umidade.', 89);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Oscilação de consumo detectada.', 'Ajuste nos dias mais quentes.', 83);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Excelente manejo de irrigação.', 'Modelo atual está bem equilibrado.', 97);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Irrigação dentro dos parâmetros ideais.', 'Continue com a gestão atual de irrigação.', 0.0);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Leve falta de irrigação (-3.9%).', 'Ajuste levemente o volume aplicado por ciclo.', -3.9);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Déficit hídrico moderado (-8.6%).', 'Considere irrigar com maior frequência.', -8.6);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Baixa irrigação detectada (-13.2%).', 'Avalie a distribuição da água na área.', -13.2);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Crítico: irrigação deficiente (-20.4%).', 'Aumente a irrigação e revise o manejo.', -20.4);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Leve excesso detectado (+4.1%).', 'Reduza o tempo de irrigação em dias úmidos.', 4.1);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Excesso moderado de água (+9.2%).', 'Monitore sinais de saturação no solo.', 9.2);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Irrigação acima do necessário (+12.7%).', 'Faça ajustes finos nos bicos de irrigação.', 12.7);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (2, 'Crítico: Excesso de irrigação (+18.6%).', 'Evite encharcamento e revise o cronograma.', 18.6);
 
--- Cultura 3: Cana-de-açúcar
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Irrigação próxima do ideal.', 'Atenção ao consumo diário de 6.5 L/m².', 88);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Excesso leve de irrigação registrado.', 'Reduza um pouco em dias nublados.', 81);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Consumo hídrico bem distribuído.', 'Continue o controle por setor da área.', 93);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Período de seca compensado com eficiência.', 'Bom uso de irrigação complementar.', 90);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Necessidade de correção detectada.', 'Aumentar irrigação nas manhãs.', 75);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Volume irrigado ideal.', 'Continue observando os padrões climáticos locais.', 0.0);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Pequeno déficit de água (-4.7%).', 'Reforce a irrigação nos próximos ciclos.', -4.7);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Déficit moderado (-10.1%).', 'Verifique o funcionamento dos aspersores.', -10.1);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Volume abaixo do esperado (-15.0%).', 'Adicione irrigação suplementar em horários críticos.', -15.0);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Crítico: déficit de irrigação (-21.8%).', 'Urgente reforço hídrico na lavoura.', -21.8);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Leve excesso de irrigação detectado (+3.5%).', 'Ajuste os horários de irrigação automática.', 3.5);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Excesso moderado registrado (+8.0%).', 'Evite aplicar em dias consecutivos.', 8.0);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Volume superior ao necessário (+14.5%).', 'Reduza o tempo de irrigação por setor.', 14.5);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (3, 'Alerta: excesso elevado de irrigação (+20.3%).', 'Pode causar lixiviação de nutrientes. Corrigir urgente.', 20.3);
 
--- Cultura 4: Feijão
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Irrigação aquém do necessário.', 'Refaça o cálculo com base nos dados climáticos.', 70);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Boa regularidade de irrigação.', 'Continue com o atual cronograma.', 90);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Oscilação prejudicial no consumo.', 'Padronize os horários de irrigação.', 76);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Atenção: variações por setor da área.', 'Considere setorização inteligente.', 80);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Desempenho hídrico ideal.', 'Manejo muito bem executado.', 94);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Irrigação equilibrada.', 'Manter práticas de irrigação atuais.', 0.0);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Leve deficiência hídrica (-3.6%).', 'Ajuste leve no manejo pode corrigir.', -3.6);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Déficit considerável de água (-8.9%).', 'Reforce a irrigação em dias secos.', -8.9);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Baixa irrigação crítica (-14.1%).', 'Verificar pressão no sistema e uniformidade.', -14.1);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Grave: irrigação insuficiente (-19.5%).', 'Aumentar frequência urgentemente.', -19.5);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Pequeno excesso de irrigação (+2.9%).', 'Reduza o volume nos dias de menor evaporação.', 2.9);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Excesso moderado identificado (+6.8%).', 'Monitore sinais de encharcamento.', 6.8);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Volume acima do ideal (+11.9%).', 'Ajuste a rotação dos setores de irrigação.', 11.9);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (4, 'Excesso grave de água aplicado (+17.4%).', 'Rever o plano de irrigação da área.', 17.4);
 
--- Cultura 5: Algodão
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Controle de irrigação eficiente.', 'Continue observando o volume por metro quadrado.', 92);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Pequeno excesso identificado.', 'Ajuste o tempo de irrigação noturno.', 79);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Níveis abaixo do ideal.', 'Melhorar frequência nos dias secos.', 74);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Consistência nos volumes irrigados.', 'Muito bom, mantenha o padrão atual.', 95);
-INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Oscilações sazonais compensadas corretamente.', 'Controle climático bem feito.', 87);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Irrigação adequada registrada.', 'Continue seguindo o planejamento atual.', 0.0);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Leve escassez de água (-4.1%).', 'Ajustar volume aplicado nos dias mais secos.', -4.1);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Déficit médio identificado (-10.4%).', 'Verificar consumo diário e redistribuir irrigação.', -10.4);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Volume abaixo do mínimo recomendado (-13.9%).', 'Rever capacidade de irrigação do setor.', -13.9);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Crítico: irrigação insuficiente (-18.2%).', 'Pode comprometer o florescimento. Reagir rapidamente.', -18.2);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Pequeno excesso de irrigação detectado (+3.2%).', 'Ajuste de bicos ou tempo pode resolver.', 3.2);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Irrigação levemente acima (+7.6%).', 'Reduza intervalos em dias chuvosos.', 7.6);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Excesso significativo de água (+12.2%).', 'Cheque drenagem e compactação do solo.', 12.2);
+INSERT INTO feedback (cultura_id, message_feedback, tips, percent) VALUES (5, 'Grave: excesso de irrigação (+19.0%).', 'Interromper irrigação por alguns dias pode ser necessário.', 19.0);

@@ -24,10 +24,27 @@ def pegar_por_id(id):
         conexao = pegar_conexao()
         cursor = conexao.cursor()
         cursor.execute('''
-            SELECT i.id, i.plantio_id, p.nome as plantio_nome, i.data_irrigacao, i.volume_agua_l
-            FROM irrigacao i
-            JOIN plantio p ON i.plantio_id = p.id
-            WHERE i.id = :1
+            SELECT
+                irr.id,
+                irr.volume_agua_l,
+                irr.data_irrigacao,
+                plan.nome AS nome_pnatio,
+                plan.observacao,
+                plan.area_id,
+                plan.cultura_id,
+                plan.data_plantio,
+                area.nome AS nome_area,
+                area.localizacao,
+                area.hectar,
+                cult.nome AS nome_cultura,
+                cult.consumo_hidrico_diario_l_m2
+            FROM
+                irrigacao irr
+                LEFT JOIN plantio plan ON irr.PLANTIO_ID = plan.id
+                LEFT JOIN area ON plan.area_id = area.id
+                LEFT JOIN cultura cult ON plan.cultura_id = cult.id
+            WHERE
+                irr.id = :1
         ''', [id])
         irrigacao = cursor.fetchone()
         return irrigacao

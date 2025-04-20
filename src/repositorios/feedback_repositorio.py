@@ -39,6 +39,27 @@ def pegar_por_id(id):
         if 'conexao' in locals():
             conexao.close()
 
+def pegar_por_cultura_id_e_percentual(cultura_id, percentual):
+    try:
+        conexao = pegar_conexao()
+        cursor = conexao.cursor()
+        cursor.execute('''
+            SELECT *
+            FROM feedback
+            WHERE cultura_id = :1
+            ORDER BY ABS(percent - :2)
+            FETCH FIRST 1 ROWS ONLY
+        ''', [cultura_id, percentual])
+        feedback = cursor.fetchone()
+        return feedback
+    except Exception as e:
+        raise Exception(f"Erro ao buscar feedback por ID: {str(e)}")
+    finally:
+        if 'cursor' in locals():
+            cursor.close()
+        if 'conexao' in locals():
+            conexao.close()
+
 def criar(cultura_id, message_feedback, tips, percent):
     try:
         conexao = pegar_conexao()
