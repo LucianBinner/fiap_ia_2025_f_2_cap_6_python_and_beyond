@@ -100,7 +100,8 @@ O sistema possui os seguintes menus:
 
 ## 🗃 Releases
 
-   * 
+   * 1.0.0 - 2025-04-21
+     * Versão inicial do sistema
 
 ## 📋 Licença
 <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
