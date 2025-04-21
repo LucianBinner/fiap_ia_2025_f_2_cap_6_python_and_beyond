@@ -1,6 +1,27 @@
 # Sistema de Gestão Hídrica
 
-## Como Executar o Sistema
+## Projeto FIAP - Cápitulo 6: Python e além
+
+## 👨‍🎓 Integrantes:
+
+- Deivisson Gonçalves Lima – RM565095 – deivisson.engtele@gmail.com
+- Lucian Paiva Binner – RM563350 – lucian.binner@hotmail.com
+- Omar Calil Abrão Mustafá Assem – RM561375 – ocama12@gmail.com
+- Paulo Henrique de Sousa – RM564262 – pauloo.sousa16@outlook.com
+- Renan Danilo dos Santos Pereira – RM566175 – renansantos4978@gmail.com
+
+## 📝 Descrição do Sistema
+
+O Sistema de Gestão Hídrica é uma solução completa para o gerenciamento eficiente de recursos hídricos na agricultura. Desenvolvido para enfrentar os desafios da irrigação agrícola moderna, o sistema resolve problemas críticos como:
+
+- Desperdício de água na irrigação através do monitoramento preciso do consumo.
+- Dificuldade no controle de múltiplas áreas de cultivo e diferentes espécies.
+- Falta de dados para tomada de decisão sobre irrigação
+- Ausência de histórico e acompanhamento do desenvolvimento das culturas.
+
+Através de um conjunto integrado de funcionalidades, o sistema permite o cadastro e monitoramento de áreas de cultivo, gestão de diferentes culturas, controle de ciclos de plantio, programação de irrigações e acompanhamento do desenvolvimento das plantas através de feedbacks. Todas as operações são registradas em logs, possibilitando análises detalhadas e melhorias contínuas no processo de irrigação.
+
+## ⚙️ Como Executar o Sistema
 
 ### Requisitos do Ambiente de Execução
 - Python - versão: 3.10 ou superior
@@ -20,18 +41,7 @@
    python src/main.py
    ```
 
-## Descrição do Sistema
-
-O Sistema de Gestão Hídrica é uma solução completa para o gerenciamento eficiente de recursos hídricos na agricultura. Desenvolvido para enfrentar os desafios da irrigação agrícola moderna, o sistema resolve problemas críticos como:
-
-- Desperdício de água na irrigação através do monitoramento preciso do consumo.
-- Dificuldade no controle de múltiplas áreas de cultivo e diferentes espécies.
-- Falta de dados para tomada de decisão sobre irrigação
-- Ausência de histórico e acompanhamento do desenvolvimento das culturas.
-
-Através de um conjunto integrado de funcionalidades, o sistema permite o cadastro e monitoramento de áreas de cultivo, gestão de diferentes culturas, controle de ciclos de plantio, programação de irrigações e acompanhamento do desenvolvimento das plantas através de feedbacks. Todas as operações são registradas em logs, possibilitando análises detalhadas e melhorias contínuas no processo de irrigação.
-
-## Como Utilizar o Sistema
+## 🧰 Como Utilizar o Sistema
 
 ### Menu Principal
 O sistema possui os seguintes menus:
@@ -87,3 +97,12 @@ O sistema possui os seguintes menus:
 - O sistema limpa a tela automaticamente para melhor visualização
 - Mensagens de erro são exibidas em vermelho
 - Todas as operações são confirmadas com mensagens de sucesso
+
+## 🗃 Releases
+
+   * 
+
+## 📋 Licença
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">Sistema de Gestão Hídrica está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
