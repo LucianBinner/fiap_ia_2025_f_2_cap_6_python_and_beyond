@@ -1,7 +1,16 @@
 from config.db.db_config import pegar_conexao
 from config.logs.log_config import registrar_log
 
-def pegar():
+"""
+pegar:
+    Recupera todas as culturas cadastradas no banco de dados.
+Returns:
+    list: Lista de tuplas contendo os dados de todas as culturas
+            (id, nome, consumo_hidrico_diario_l_m2)
+Raises:
+    Exception: Se houver erro na consulta ao banco de dados
+"""
+def pegar() -> list:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -18,7 +27,18 @@ def pegar():
         if 'conexao' in locals():
             conexao.close()
 
-def pegar_por_id(id):
+"""
+pegar_por_id:
+    Recupera uma cultura específica pelo seu ID.
+Args:
+    id (int): ID da cultura a ser buscada
+Returns:
+    tuple: Tupla contendo os dados da cultura (id, nome, consumo_hidrico_diario_l_m2)
+            ou None se não encontrada
+Raises:
+    Exception: Se houver erro na consulta ao banco de dados
+"""
+def pegar_por_id(id: int) -> tuple:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -35,7 +55,18 @@ def pegar_por_id(id):
         if 'conexao' in locals():
             conexao.close()
 
-def criar(nome, consumo_hidrico_diario_l_m2):
+"""
+criar: 
+    Cria uma nova cultura no banco de dados.
+Args:
+    nome (str): Nome da cultura
+    consumo_hidrico_diario_l_m2 (float): Consumo hídrico diário em L/m²
+Returns:
+    int: ID da cultura criada
+Raises:
+    Exception: Se houver erro na criação da cultura
+"""
+def criar(nome: str, consumo_hidrico_diario_l_m2: float) -> int:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -58,7 +89,19 @@ def criar(nome, consumo_hidrico_diario_l_m2):
         if 'conexao' in locals():
             conexao.close()
 
-def atualizar_por_id(id, nome, consumo_hidrico_diario_l_m2):
+"""
+atualizar_por_id:
+    Atualiza os dados de uma cultura existente.
+Args:
+    id (int): ID da cultura a ser atualizada
+    nome (str): Novo nome da cultura
+    consumo_hidrico_diario_l_m2 (float): Novo consumo hídrico diário em L/m²
+Returns:
+    bool: True se a cultura foi atualizada com sucesso, False caso contrário
+Raises:
+    Exception: Se houver erro na atualização da cultura
+"""
+def atualizar_por_id(id: int, nome: str, consumo_hidrico_diario_l_m2: float) -> bool:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -79,7 +122,17 @@ def atualizar_por_id(id, nome, consumo_hidrico_diario_l_m2):
         if 'conexao' in locals():
             conexao.close()
 
-def deletar_por_id(id):
+"""
+deletar_por_id:
+    Remove uma cultura do banco de dados.
+Args:
+    id (int): ID da cultura a ser removida
+Returns:
+    bool: True se a cultura foi removida com sucesso, False caso contrário
+Raises:
+    Exception: Se houver erro na remoção da cultura
+"""
+def deletar_por_id(id: int) -> bool:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()

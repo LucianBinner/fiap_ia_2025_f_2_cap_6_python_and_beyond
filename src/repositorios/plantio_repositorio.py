@@ -1,7 +1,16 @@
 from config.db.db_config import pegar_conexao
 from config.logs.log_config import registrar_log
 
-def pegar():
+"""
+pegar:
+    Recupera todos os plantios cadastrados no banco de dados.
+Returns:
+    list: Lista de tuplas contendo os dados de todos os plantios
+            (id, nome, observacao, area_id, area_nome, cultura_id, cultura_nome, data_plantio)
+Raises:
+    Exception: Se houver erro na consulta ao banco de dados
+"""
+def pegar() -> list:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -23,7 +32,19 @@ def pegar():
         if 'conexao' in locals():
             conexao.close()
 
-def pegar_por_id(id):
+"""
+pegar_por_id:
+    Recupera um plantio específico pelo seu ID.
+Args:
+    id (int): ID do plantio a ser buscado
+Returns:
+    tuple: Tupla contendo os dados do plantio
+            (id, nome, observacao, area_id, area_nome, cultura_id, cultura_nome, data_plantio)
+            ou None se não encontrado
+Raises:
+    Exception: Se houver erro na consulta ao banco de dados
+"""
+def pegar_por_id(id: int) -> tuple:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -46,7 +67,21 @@ def pegar_por_id(id):
         if 'conexao' in locals():
             conexao.close()
 
-def criar(nome, observacao, area_id, cultura_id, data_plantio):
+"""
+criar:
+    Cria um novo plantio no banco de dados.
+Args:
+    nome (str): Nome do plantio
+    observacao (str): Observações sobre o plantio
+    area_id (int): ID da área onde será feito o plantio
+    cultura_id (int): ID da cultura a ser plantada
+    data_plantio (str): Data do plantio no formato YYYY-MM-DD
+Returns:
+    int: ID do plantio criado
+Raises:
+    Exception: Se houver erro na criação do plantio
+"""
+def criar(nome: str, observacao: str, area_id: int, cultura_id: int, data_plantio: str) -> int:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -69,7 +104,22 @@ def criar(nome, observacao, area_id, cultura_id, data_plantio):
         if 'conexao' in locals():
             conexao.close()
 
-def atualizar_por_id(id, nome, observacao, area_id, cultura_id, data_plantio):
+"""
+atualizar_por_id:
+    Atualiza os dados de um plantio existente.
+Args:
+    id (int): ID do plantio a ser atualizado
+    nome (str): Novo nome do plantio
+    observacao (str): Novas observações sobre o plantio
+    area_id (int): Novo ID da área do plantio
+    cultura_id (int): Novo ID da cultura do plantio
+    data_plantio (str): Nova data do plantio no formato YYYY-MM-DD
+Returns:
+    bool: True se o plantio foi atualizado com sucesso, False caso contrário
+Raises:
+    Exception: Se houver erro na atualização do plantio
+"""
+def atualizar_por_id(id: int, nome: str, observacao: str, area_id: int, cultura_id: int, data_plantio: str) -> bool:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -90,7 +140,17 @@ def atualizar_por_id(id, nome, observacao, area_id, cultura_id, data_plantio):
         if 'conexao' in locals():
             conexao.close()
 
-def deletar_por_id(id):
+"""
+deletar_por_id:
+    Remove um plantio do banco de dados.
+Args:
+    id (int): ID do plantio a ser removido
+Returns:
+    bool: True se o plantio foi removido com sucesso, False caso contrário
+Raises:
+    Exception: Se houver erro na remoção do plantio
+"""
+def deletar_por_id(id: int) -> bool:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()

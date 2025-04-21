@@ -1,6 +1,19 @@
 import os
 from datetime import datetime
 
+"""
+registrar_log:
+    Registra uma entrada de log no arquivo de logs do sistema.
+Args:
+    repositorio (str): Nome do repositório onde a operação foi realizada
+    operacao (str): Tipo de operação realizada (ex: criar, atualizar, deletar)
+    status (str): Status da operação (ex: SUCESSO, ERRO)
+    message (str): Mensagem detalhada sobre a operação
+O log é salvo no formato:
+    [YYYY-MM-DD HH:MM:SS] STATUS - REPOSITORIO - OPERACAO: MENSAGEM
+Raises:
+    Exception: Se houver erro ao escrever no arquivo de log
+"""
 def registrar_log(repositorio, operacao, status, message):
     try:
         log_dir = os.path.dirname(os.path.abspath(__file__))

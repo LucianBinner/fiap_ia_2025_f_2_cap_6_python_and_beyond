@@ -5,7 +5,15 @@ import pandas as pd
 from datetime import datetime
 
 
-def pegar_irrigacoes():
+"""
+pegar_irrigacoes:
+    Retorna todas as irrigações cadastradas no sistema em formato de string tabulada.
+Returns:
+    str: String formatada contendo todas as irrigações com suas informações (id, plantio, data, volume)
+Raises:
+    Exception: Se houver erro ao buscar as irrigações no repositório
+"""
+def pegar_irrigacoes() -> str:
     irrigacoes = irrigacao_repositorio.pegar()
     irrigacoes_formatadas = [{
         'id': irrigacao[0],
@@ -16,7 +24,17 @@ def pegar_irrigacoes():
     df = pd.DataFrame(irrigacoes_formatadas)
     return df.to_string(index=False)
 
-def pegar_irrigacao_por_id(id):
+"""
+pegar_irrigacao_por_id:
+    Busca uma irrigação específica pelo seu ID.
+Args:
+    id (int): ID da irrigação a ser buscada
+Returns:
+    dict: Dicionário contendo as informações da irrigação (id, data, volume, plantio, feedback, dica)
+Raises:
+    Exception: Se a irrigação não for encontrada ou houver erro ao buscar o feedback
+"""
+def pegar_irrigacao_por_id(id: int) -> dict:
     validar_pegar_irrigacao_por_id(id)
     irrigacao = irrigacao_repositorio.pegar_por_id(id)
     if irrigacao is None:
@@ -34,7 +52,19 @@ def pegar_irrigacao_por_id(id):
         'dica': feedback[3],
     }
 
-def criar_irrigacao(plantio_id, data_irrigacao_input, volume_agua_l_input):
+"""
+criar_irrigacao:
+    Cria uma nova irrigação no sistema.
+Args:
+    plantio_id (int): ID do plantio associado
+    data_irrigacao_input (str): Data da irrigação no formato YYYY-MM-DD
+    volume_agua_l_input (str): Volume de água em litros (será convertido para float)
+Returns:
+    dict: Dicionário contendo as informações da irrigação criada
+Raises:
+    Exception: Se houver erro na validação, criação ou ao buscar o feedback
+"""
+def criar_irrigacao(plantio_id: int, data_irrigacao_input: str, volume_agua_l_input: str) -> dict:
     validar_irrigacao(plantio_id, data_irrigacao_input, volume_agua_l_input)
     data_irrigacao = datetime.strptime(data_irrigacao_input, '%Y-%m-%d')
     volume_agua_l = float(volume_agua_l_input)
@@ -56,7 +86,20 @@ def criar_irrigacao(plantio_id, data_irrigacao_input, volume_agua_l_input):
     else:
         raise Exception("Erro ao criar irrigação")
 
-def atualizar_irrigacao_por_id(id, plantio_id, data_irrigacao_input, volume_agua_l_input):
+"""
+atualizar_irrigacao_por_id:
+    Atualiza as informações de uma irrigação existente.
+Args:
+    id (int): ID da irrigação a ser atualizada
+    plantio_id (int): Novo ID do plantio associado
+    data_irrigacao_input (str): Nova data da irrigação no formato YYYY-MM-DD
+    volume_agua_l_input (str): Novo volume de água em litros (será convertido para float)
+Returns:
+    dict: Dicionário contendo as informações atualizadas da irrigação
+Raises:
+    Exception: Se a irrigação não for encontrada ou houver erro na atualização
+"""
+def atualizar_irrigacao_por_id(id: int, plantio_id: int, data_irrigacao_input: str, volume_agua_l_input: str) -> dict:
     validar_atualizar_irrigacao(id, plantio_id, data_irrigacao_input, volume_agua_l_input)
     irrigacao = irrigacao_repositorio.pegar_por_id(id)
     if irrigacao is None:
@@ -80,7 +123,17 @@ def atualizar_irrigacao_por_id(id, plantio_id, data_irrigacao_input, volume_agua
     else:
         raise Exception("Erro ao atualizar irrigação")
 
-def deletar_irrigacao_por_id(id):
+"""
+deletar_irrigacao_por_id:
+    Remove uma irrigação do sistema.
+Args:
+    id (int): ID da irrigação a ser removida
+Returns:
+    None
+Raises:
+    Exception: Se a irrigação não for encontrada ou houver erro na remoção
+"""
+def deletar_irrigacao_por_id(id: int) -> None:
     validar_deletar_irrigacao(id)
     irrigacao = irrigacao_repositorio.pegar_por_id(id)
     if irrigacao is None:

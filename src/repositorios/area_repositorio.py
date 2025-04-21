@@ -1,7 +1,16 @@
 from config.db.db_config import pegar_conexao
 from config.logs.log_config import registrar_log
 
-def pegar():
+"""
+pegar:
+    Recupera todas as áreas cadastradas no banco de dados.
+Returns:
+    list: Lista de tuplas contendo os dados de todas as áreas
+            (id, nome, localizacao, hectar)
+Raises:
+    Exception: Se houver erro na consulta ao banco de dados
+"""
+def pegar() -> list:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -18,7 +27,18 @@ def pegar():
         if 'conexao' in locals():
             conexao.close()
 
-def pegar_por_id(id):
+"""
+pegar_por_id:
+    Recupera uma área específica pelo seu ID.
+Args:
+    id (int): ID da área a ser buscada
+Returns:
+    tuple: Tupla contendo os dados da área (id, nome, localizacao, hectar)
+            ou None se não encontrada
+Raises:
+    Exception: Se houver erro na consulta ao banco de dados
+"""
+def pegar_por_id(id: int) -> tuple:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -35,7 +55,19 @@ def pegar_por_id(id):
         if 'conexao' in locals():
             conexao.close()
 
-def criar(nome, localizacao, hectar):
+"""
+criar:
+    Cria uma nova área no banco de dados.
+Args:
+    nome (str): Nome da área
+    localizacao (str): Localização da área
+    hectar (float): Tamanho da área em hectares
+Returns:
+    int: ID da área criada
+Raises:
+    Exception: Se houver erro na criação da área
+"""
+def criar(nome: str, localizacao: str, hectar: float) -> int:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -57,7 +89,20 @@ def criar(nome, localizacao, hectar):
         if 'conexao' in locals():
             conexao.close()
 
-def atualizar_por_id(id, nome, localizacao, hectar):
+"""
+atualizar_por_id:
+    Atualiza os dados de uma área existente.
+Args:
+    id (int): ID da área a ser atualizada
+    nome (str): Novo nome da área
+    localizacao (str): Nova localização da área
+    hectar (float): Novo tamanho da área em hectares
+Returns:
+    bool: True se a área foi atualizada com sucesso, False caso contrário
+Raises:
+    Exception: Se houver erro na atualização da área
+"""
+def atualizar_por_id(id: int, nome: str, localizacao: str, hectar: float) -> bool:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -78,7 +123,17 @@ def atualizar_por_id(id, nome, localizacao, hectar):
         if 'conexao' in locals():
             conexao.close()
 
-def deletar_por_id(id):
+"""
+deletar_por_id:
+    Remove uma área do banco de dados.
+Args:
+    id (int): ID da área a ser removida
+Returns:
+    bool: True se a área foi removida com sucesso, False caso contrário
+Raises:
+    Exception: Se houver erro na remoção da área
+"""
+def deletar_por_id(id: int) -> bool:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()

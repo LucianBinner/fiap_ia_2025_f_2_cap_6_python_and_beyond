@@ -3,6 +3,14 @@ from controladores.plantio_controlador_validacao import *
 import pandas as pd
 from datetime import datetime
 
+"""
+pegar_plantios:
+    Retorna todos os plantios cadastrados no sistema.
+Returns:
+    str: String formatada contendo todos os plantios em formato tabular.
+Raises:
+    Exception: Se houver erro ao buscar os plantios.
+"""
 def pegar_plantios():
     plantios = plantio_repositorio.pegar()
     if plantios is None:
@@ -18,6 +26,16 @@ def pegar_plantios():
     df = pd.DataFrame(plantios_formatados)
     return df.to_string(index=False)
 
+"""
+pegar_plantio_por_id:
+    Busca um plantio específico pelo seu ID.
+Args:
+    id (int): ID do plantio a ser buscado.
+Returns:
+    dict: Dicionário contendo os dados do plantio.
+Raises:
+    Exception: Se o plantio não for encontrado.
+"""
 def pegar_plantio_por_id(id):
     validar_pegar_plantio_por_id(id)
     plantio = plantio_repositorio.pegar_por_id(id)
@@ -32,6 +50,21 @@ def pegar_plantio_por_id(id):
         'data_plantio': plantio[7].strftime('%Y-%m-%d')
     }
 
+"""
+criar_plantio:
+    Cria um novo plantio no sistema.
+Args:
+    nome (str): Nome do plantio.
+    observacao (str): Observações sobre o plantio.
+    area_id (int): ID da área onde será feito o plantio.
+    cultura_id (int): ID da cultura a ser plantada.
+    data_plantio_input (str): Data do plantio no formato 'YYYY-MM-DD'.
+Returns:
+    dict: Dicionário contendo os dados do plantio criado.
+Raises:
+    Exception: Se houver erro na criação do plantio.
+    ValueError: Se a data estiver em formato inválido.
+"""
 def criar_plantio(nome, observacao, area_id, cultura_id, data_plantio_input):
     validar_plantio(nome, observacao, area_id, cultura_id, data_plantio_input)
     data_plantio = datetime.strptime(data_plantio_input, '%Y-%m-%d')
@@ -49,6 +82,22 @@ def criar_plantio(nome, observacao, area_id, cultura_id, data_plantio_input):
     else:
         raise Exception("Erro ao criar plantio")
 
+"""
+atualizar_plantio_por_id:
+    Atualiza um plantio existente.
+Args:
+    id (int): ID do plantio a ser atualizado.
+    nome (str): Novo nome do plantio.
+    observacao (str): Novas observações.
+    area_id (int): Novo ID da área.
+    cultura_id (int): Novo ID da cultura.
+    data_plantio_input (str): Nova data no formato 'YYYY-MM-DD'.
+Returns:
+    dict: Dicionário contendo os dados do plantio atualizado.
+Raises:
+    Exception: Se o plantio não for encontrado ou houver erro na atualização.
+    ValueError: Se a data estiver em formato inválido.
+"""
 def atualizar_plantio_por_id(id, nome, observacao, area_id, cultura_id, data_plantio_input):
     validar_atualizar_plantio(id, nome, observacao, area_id, cultura_id, data_plantio_input)
     plantio = plantio_repositorio.pegar_por_id(id)
@@ -68,6 +117,14 @@ def atualizar_plantio_por_id(id, nome, observacao, area_id, cultura_id, data_pla
     else:
         raise Exception("Erro ao atualizar plantio")
 
+"""
+deletar_plantio_por_id:
+    Remove um plantio do sistema.
+Args:
+    id (int): ID do plantio a ser removido.
+Raises:
+    Exception: Se o plantio não for encontrado ou houver erro na deleção.
+"""
 def deletar_plantio_por_id(id):
     validar_deletar_plantio(id)
     plantio = plantio_repositorio.pegar_por_id(id)

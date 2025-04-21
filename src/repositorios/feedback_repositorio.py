@@ -1,7 +1,16 @@
 from config.db.db_config import pegar_conexao
 from config.logs.log_config import registrar_log
 
-def pegar():
+"""
+pegar:
+    Recupera todos os feedbacks cadastrados no banco de dados.
+Returns:
+    list: Lista de tuplas contendo os dados de todos os feedbacks
+            (id, cultura_id, message_feedback, tips, percent, cultura_nome)
+Raises:
+    Exception: Se houver erro na consulta ao banco de dados
+"""
+def pegar() -> list:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -22,7 +31,19 @@ def pegar():
         if 'conexao' in locals():
             conexao.close()
 
-def pegar_por_id(id):
+"""
+pegar_por_id:
+    Recupera um feedback específico pelo seu ID.
+Args:
+    id (int): ID do feedback a ser buscado
+Returns:
+    tuple: Tupla contendo os dados do feedback
+            (id, cultura_id, message_feedback, tips, percent, cultura_nome)
+            ou None se não encontrado
+Raises:
+    Exception: Se houver erro na consulta ao banco de dados
+"""
+def pegar_por_id(id: int) -> tuple:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -44,7 +65,20 @@ def pegar_por_id(id):
         if 'conexao' in locals():
             conexao.close()
 
-def pegar_por_cultura_id_e_percentual(cultura_id, percentual):
+"""
+pegar_por_cultura_id_e_percentual:
+    Recupera o feedback mais próximo ao percentual especificado para uma cultura.
+Args:
+    cultura_id (int): ID da cultura
+    percentual (float): Percentual de referência para busca
+Returns:
+    tuple: Tupla contendo os dados do feedback mais próximo ao percentual
+            (id, cultura_id, message_feedback, tips, percent)
+            ou None se não encontrado
+Raises:
+    Exception: Se houver erro na consulta ao banco de dados
+"""
+def pegar_por_cultura_id_e_percentual(cultura_id: int, percentual: float) -> tuple:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -67,7 +101,20 @@ def pegar_por_cultura_id_e_percentual(cultura_id, percentual):
         if 'conexao' in locals():
             conexao.close()
 
-def criar(cultura_id, message_feedback, tips, percent):
+"""
+criar:
+    Cria um novo feedback no banco de dados.
+Args:
+    cultura_id (int): ID da cultura relacionada
+    message_feedback (str): Mensagem do feedback
+    tips (str): Dicas ou sugestões
+    percent (float): Percentual relacionado ao feedback
+Returns:
+    int: ID do feedback criado
+Raises:
+    Exception: Se houver erro na criação do feedback
+"""
+def criar(cultura_id: int, message_feedback: str, tips: str, percent: float) -> int:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -89,7 +136,21 @@ def criar(cultura_id, message_feedback, tips, percent):
         if 'conexao' in locals():
             conexao.close()
 
-def atualizar_por_id(id, cultura_id, message_feedback, tips, percent):
+"""
+atualizar_por_id:
+    Atualiza os dados de um feedback existente.
+Args:
+    id (int): ID do feedback a ser atualizado
+    cultura_id (int): Novo ID da cultura relacionada
+    message_feedback (str): Nova mensagem do feedback
+    tips (str): Novas dicas ou sugestões
+    percent (float): Novo percentual
+Returns:
+    bool: True se o feedback foi atualizado com sucesso, False caso contrário
+Raises:
+    Exception: Se houver erro na atualização do feedback
+"""
+def atualizar_por_id(id: int, cultura_id: int, message_feedback: str, tips: str, percent: float) -> bool:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
@@ -110,7 +171,17 @@ def atualizar_por_id(id, cultura_id, message_feedback, tips, percent):
         if 'conexao' in locals():
             conexao.close()
 
-def deletar_por_id(id):
+"""
+deletar_por_id:
+    Remove um feedback do banco de dados.
+Args:
+    id (int): ID do feedback a ser removido
+Returns:
+    bool: True se o feedback foi removido com sucesso, False caso contrário
+Raises:
+    Exception: Se houver erro na remoção do feedback
+"""
+def deletar_por_id(id: int) -> bool:
     try:
         conexao = pegar_conexao()
         cursor = conexao.cursor()
