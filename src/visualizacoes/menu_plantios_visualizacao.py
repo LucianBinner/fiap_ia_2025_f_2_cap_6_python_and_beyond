@@ -33,6 +33,7 @@ def menu_plantios():
                     print("Nome:", plantio['nome'])
                     print("Observação:", plantio['observacao'])
                     print("Área:", plantio['area'])
+                    print("Cultura:", plantio['cultura'])
                 case '3':
                     print('\n=== Cadastrar Novo Plantio ===')
                     nome = input('\nDigite o nome do plantio: ')
